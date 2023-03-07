@@ -1,0 +1,34 @@
+<div class="outer">
+  <div id="container">
+    <img src="../../assets/1676576659567.jpg" />
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="searchGroup">
+          <mat-form-field appearance="outline">
+            <mat-label>Search Github user</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="searchValue">
+            <mat-hint>Enter user name to search</mat-hint>
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <h1>User list</h1>
+  <mat-progress-bar mode="indeterminate" *ngIf="isLoading">
+  </mat-progress-bar>
+  <mat-list>
+    <mat-list-item *ngFor="let user of dataSource">
+      <div class="df">
+        <img [src]="user.avatar_url" class="avatar" />
+        <div>
+          <span matListItemTitle>{{user.login}}</span>
+          <span class="df"><a [href]="user.html_url" target="_blank" matListItemLine>{{user.html_url}}</a>
+            <mat-icon style="margin-top: 2px; transform: scale(0.6);">north_east</mat-icon>
+          </span>
+        </div>
+      </div>
+    </mat-list-item>
+  </mat-list>
+  <mat-paginator #paginator [length]="users.length" [pageSize]="15" [pageSizeOptions]="[15]"></mat-paginator>
+</div>
